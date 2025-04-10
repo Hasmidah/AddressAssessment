@@ -1,0 +1,76 @@
+<p-card>
+  <ng-template #title>
+    <h3> {{ IsUpdate ? "Update Address" : "Create Address"}} </h3>
+  </ng-template>
+  <p-toolbar styleClass="bg-neutral-50">
+    <ng-template #start>
+      <p-button pRipple (onClick)="SaveClick()"> {{ IsUpdate ? 'Update' : 'Save' }} </p-button>
+    </ng-template>
+    <ng-template #end>
+      <p-button (onClick)="CancelClick()" icon="pi pi-times" severity="danger"></p-button>
+    </ng-template>
+  </p-toolbar>
+  <br />
+
+  <form [formGroup]="AddressFG">
+    <div>
+      <div class="pb-8">
+        <label><span class="text-red">*</span> First Name:</label>
+      </div>
+      <div class="pb-8">
+        <input type="text" pInputText class="inputfield" formControlName="FirstName" maxlength="100" />
+        @if(AddressFG.get('FirstName')?.errors && (AddressFG.get('FirstName')?.dirty || AddressFG.get('FirstName')?.touched)){ @if(AddressFG.get('FirstName')?.errors?.['required']){
+        <small class="text-red">First Name is required</small>
+        } }
+      </div>
+      <div class="pb-8">
+        <label><span class="text-red">*</span> Last Name:</label>
+      </div>
+      <div class="pb-8">
+        <input type="text" pInputText class="inputfield" formControlName="LastName" maxlength="100" />
+        @if(AddressFG.get('LastName')?.errors && (AddressFG.get('LastName')?.dirty || AddressFG.get('LastName')?.touched)){ @if(AddressFG.get('LastName')?.errors?.['required']){
+        <small class="text-red">Last Name is required</small>
+        } }
+      </div>
+      <div class="pb-8">
+        <label>Phone Number:</label>
+      </div>
+      <div class="pb-8">
+        <input type="text" pInputText class="inputfield" formControlName="PhoneNo" maxlength="100" />
+      </div>
+      <div class="pb-8">
+        <label> Email:</label>
+      </div>
+      <div class="pb-8">
+        <input type="text" pInputText class="inputfield" formControlName="Email" maxlength="100" />
+        @if(AddressFG.get('Email')?.errors && (AddressFG.get('Email')?.dirty || AddressFG.get('Email')?.touched)){
+        <small class="text-red" *ngIf="AddressFG.get('Email')?.errors?.['email']">Invalid Email</small>
+        }
+      </div>
+      <div class="pb-8">
+        <label>Address:</label>
+      </div>
+      <div class="pb-8">
+        <input class="inputfield" type="text" pInputText formControlName="Address" maxlength="250" />
+      </div>
+      <div class="pb-8">
+        <label>City:</label>
+      </div>
+      <div class="pb-8">
+        <input class="inputfield" type="text" pInputText formControlName="City" maxlength="100" />
+      </div>
+      <div class="pb-8">
+        <label>State:</label>
+      </div>
+      <div class="pb-8">
+        <p-select class="padding-0 inputfield" [options]="(stateSelection$ | async) || []" pInputText formControlName="State"> </p-select>
+      </div>
+      <div class="pb-8">
+        <label>Country:</label>
+      </div>
+      <div class="pb-8">
+        <input class="inputfield" type="text" pInputText formControlName="Country" maxlength="100" />
+      </div>
+    </div>
+  </form>
+</p-card>

@@ -1,0 +1,67 @@
+<p-card>
+  <ng-template #title>
+    <h3> Address Details</h3>
+  </ng-template>
+  <p-toolbar>
+    <ng-template #start>
+    </ng-template>
+    <ng-template #end>
+      <p-button (onClick)="CancelClick()" icon="pi pi-times" severity="danger"></p-button>
+    </ng-template>
+  </p-toolbar>
+  <br />
+
+  <form [formGroup]="AddressFG">
+    <div>
+      <div class="pb-8">
+        <label><span class="text-red">*</span> First Name:</label>
+      </div>
+      <div class="pb-8">
+        <input type="text" pInputText class="inputfield" formControlName="FirstName" maxlength="100" />
+      </div>
+      <div class="pb-8">
+        <label><span class="text-red">*</span> Last Name:</label>
+      </div>
+      <div class="pb-8">
+        <input type="text" pInputText class="inputfield" formControlName="LastName" maxlength="100" />
+      </div>
+      <div class="pb-8">
+        <label>Phone Number:</label>
+      </div>
+      <div class="pb-8">
+        <input type="text" pInputText class="inputfield" formControlName="PhoneNo" maxlength="100" />
+      </div>
+      <div class="pb-8">
+        <label> Email:</label>
+      </div>
+      <div class="pb-8">
+        <input type="text" pInputText class="inputfield" formControlName="Email" maxlength="100" />
+      </div>
+      <div class="pb-8">
+        <label>Address:</label>
+      </div>
+      <div class="pb-8">
+        <input class="inputfield" type="text" pInputText formControlName="Address" maxlength="250" />
+      </div>
+      <div class="pb-8">
+        <label>City:</label>
+      </div>
+      <div class="pb-8">
+        <input class="inputfield" type="text" pInputText formControlName="City" maxlength="100" />
+      </div>
+      <div class="pb-8">
+        <label>State:</label>
+      </div>
+      <div class="pb-8">
+        <p-select class="padding-0 inputfield" [options]="(stateSelection$ | async) || []" pInputText formControlName="State"> </p-select>
+      </div>
+      <div class="pb-8">
+        <label>Country:</label>
+      </div>
+      <div class="pb-8">
+        <input class="inputfield" type="text" pInputText formControlName="Country" maxlength="100" />
+      </div>
+    </div>
+  </form>
+</p-card>
+

@@ -1,0 +1,41 @@
+<p-card>
+  <ng-template #title>List of Address</ng-template>
+  <ng-template #subtitle>{{ addressList().length || 0 }} address</ng-template>
+  <div class="gap pb-8">
+    <p-button pRipple label="Add Address" icon="pi pi-plus" (click)="AddClick()"> </p-button>
+  </div>
+  <p-table #fTable dataKey="Id" [tableStyle]="{ 'min-width': '50rem' }" [value]="addressList()" showGridlines>
+    <ng-template #header>
+      <tr>
+        <th style="width: 20%">First Name</th>
+        <th style="width: 20%">Last Name</th>
+        <th style="width: 20%">Phone</th>
+        <th style="width: 20%">Email</th>
+        <th style="width: 20%">Action</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-data let-ri="rowIndex">
+      <tr>
+        <td>
+          <a (click)="ViewClick(data.Id)" class="text-red-500">{{ data.FirstName }}</a>
+        </td>
+        <td pTooltip="{{ data?.Name?.length > 40 ? data?.Name : '' }}" tooltipPosition="top">
+          {{ data.LastName }}
+        </td>
+        <td>
+          {{ data.PhoneNo }}
+        </td>
+        <td pTooltip="{{ data.Email.length > 40 ? data.Email : '' }}" tooltipPosition="top">
+          {{ data.Email }}
+        </td>
+        <td>
+          <div class="row">
+            <p-button pRipple icon="pi pi-pencil" [text]="true" (click)="UpdateAddress(data.Id)" pTooltip="Update" tooltipPosition="top"></p-button>
+            <p-divider layout="vertical" />
+            <p-button pRipple icon="pi pi-trash" [text]="true" (click)="Delete(data.Id)" severity="danger" pTooltip="Delete" tooltipPosition="top"></p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
